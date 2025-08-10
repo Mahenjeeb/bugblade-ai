@@ -1,22 +1,44 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useEditor } from "../context/EditorContext";
-import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
-const CodeEditor = () => {
+import Editor from "@monaco-editor/react";
 
-  const [language, setLanguage] = useState("javascript");
-  const [starterCode, setStarterCode] = useState("");
+const CodeEditor = () => {
+  const editorRef = useRef(null);
+  const {
+    editorConfig,
+    language,
+    starterCode,
+    code,
+    setLanguage,
+    setCode,
+    analyzeCode,
+    feedback,
+    isLoading,
+    error,
+  } = useEditor();
 
   const handleSelectChange = (event) => {
     const { value } = event;
     setLanguage(value);
-    const selectedConfig = editorConfig.find(ele => ele.name === value);
-    setStarterCode(selectedConfig ? selectedConfig.value : '');
   };
 
-  const handleOnClick = () => {
-    
-  }
-  const editorConfig = useEditor();
+  const handleEditorDidMount = (editor) => {
+    editorRef.current = editor;
+  };
+
+  const handleAnalyze = async () => {
+    if (editorRef.current) {
+      const currentValue = editorRef.current.getValue();
+      setCode(currentValue);
+      await analyzeCode(currentValue, language, starterCode);
+    }
+  };
+
+  // Watch for code changes and send to API
+  useEffect(() => {
+    handleAnalyze();
+  }, []);
+
   return (
     <>
       <div>
@@ -35,8 +57,20 @@ const CodeEditor = () => {
           theme="vs-dark"
           language={language}
           value={starterCode}
+          onMount={handleEditorDidMount}
         />
-        <button onClick={handleOnClick}>Analyze</button>
+        <button onClick={handleAnalyze} disabled={isLoading}>
+          {isLoading ? "Analyzing..." : "Analyze"}
+        </button>
+
+        {error && <div style={{ color: "red" }}>Error: {error}</div>}
+        <Editor
+          height="90vh"
+          width="45vw"
+          theme="vs-dark"
+          language={language}
+          value={feedback}
+        />
       </div>
     </>
   );
