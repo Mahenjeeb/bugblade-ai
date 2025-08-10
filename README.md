@@ -2,12 +2,12 @@
 
 > **Intelligent Code Review & Bug Detection Platform**
 
-BugBlade AI is a modern web application that leverages AI to automatically review your code, detect bugs, and suggest optimizations in real-time. Built with React, Monaco Editor, and OpenAI's GPT-4, it provides instant feedback to help you write cleaner, more efficient code.
+BugBlade AI is a modern web application that leverages AI to automatically review your code, detect bugs, and suggest optimizations in real-time. Built with React, Monaco Editor, OpenAI's GPT-5, and puter.js API, it provides instant feedback to help you write cleaner, more efficient code.
 
 ![BugBlade AI](https://img.shields.io/badge/BugBlade-AI-blue?style=for-the-badge&logo=bug)
 ![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=for-the-badge&logo=react)
 ![Vite](https://img.shields.io/badge/Vite-7.1.0-646CFF?style=for-the-badge&logo=vite)
-![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-412991?style=for-the-badge&logo=openai)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT--5-412991?style=for-the-badge&logo=openai)
 
 ## ✨ Features
 
@@ -16,7 +16,7 @@ BugBlade AI is a modern web application that leverages AI to automatically revie
 - ⚡ **Performance Optimization** - Receive suggestions for code improvements
 - 🎨 **Modern UI** - Clean, intuitive interface with Monaco Editor
 - 🌐 **Multi-language Support** - Works with JavaScript, Python, Java, and more
-- 🤖 **AI-Powered** - Powered by OpenAI's GPT-4 for intelligent analysis
+- 🤖 **AI-Powered** - Powered by OpenAI's GPT-5 for intelligent analysis
 - 📱 **Responsive Design** - Works seamlessly on desktop and mobile
 
 ## 🚀 Quick Start
@@ -25,7 +25,6 @@ BugBlade AI is a modern web application that leverages AI to automatically revie
 
 - Node.js (v16 or higher)
 - npm or yarn
-- OpenAI API key
 
 ### Installation
 
@@ -40,18 +39,13 @@ BugBlade AI is a modern web application that leverages AI to automatically revie
    npm install
    ```
 
-3. **Set up environment variables**
-   ```bash
-   # Create a .env file in the root directory
-   echo "OPENAI_API_KEY=your_openai_api_key_here" > .env
-   ```
 
-4. **Start the development server**
+3. **Start the development server**
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
+4. **Open your browser**
    Navigate to `http://localhost:3000` to start using BugBlade AI!
 
 ## 🛠️ Tech Stack
@@ -61,25 +55,16 @@ BugBlade AI is a modern web application that leverages AI to automatically revie
 - **Vite** - Fast build tool and dev server
 - **Monaco Editor** - Professional code editor (same as VS Code)
 - **Axios** - HTTP client for API requests
-
-### Backend
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web framework
-- **OpenAI API** - AI-powered code analysis
-- **CORS** - Cross-origin resource sharing
+- **puter.js API** - Cloud development platform integration
 
 ### Development Tools
 - **ESLint** - Code linting and formatting
-- **TypeScript** - Type safety (dev dependencies)
+- **JavaScript** - Type safety (dev dependencies)
 
 ## 📁 Project Structure
 
 ```
 bugblade-ai/
-├── backend/                 # Express.js server
-│   ├── controller/         # API controllers
-│   ├── router/            # API routes
-│   └── server.js          # Server entry point
 ├── src/                   # React frontend
 │   ├── components/        # React components
 │   ├── context/          # React context providers
@@ -94,7 +79,7 @@ bugblade-ai/
 
 1. **Code Input** - Write or paste your code in the Monaco Editor
 2. **Language Selection** - Choose your programming language
-3. **AI Analysis** - BugBlade AI sends your code to OpenAI's GPT-4
+3. **AI Analysis** - BugBlade AI sends your code to OpenAI's GPT-5 via puter.js API
 4. **Instant Feedback** - Receive detailed analysis and suggestions
 5. **Iterate** - Apply suggestions and get continuous feedback
 
@@ -159,25 +144,26 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🎉 Acknowledgments
 
-- [OpenAI](https://openai.com/) for providing the GPT-4 API
+- [OpenAI](https://openai.com/) for providing the GPT-5 API
+- [puter.js](https://puter.com/) for the cloud development platform API
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/) for the excellent code editor
 - [React](https://reactjs.org/) team for the amazing framework
 - [Vite](https://vitejs.dev/) for the fast build tool
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/bugblade-ai/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/bugblade-ai/discussions)
-- **Email**: your-email@example.com
+- **Issues**: [GitHub Issues](https://github.com/Mahenjeeb/bugblade-ai/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Mahenjeeb/bugblade-ai/discussions)
+- **Email**: mahenjeeb.biswal@gmail.com
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️ by Mahenjeeb**
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/bugblade-ai?style=social)](https://github.com/yourusername/bugblade-ai)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/bugblade-ai?style=social)](https://github.com/yourusername/bugblade-ai)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/bugblade-ai)](https://github.com/yourusername/bugblade-ai/issues)
+[![GitHub stars](https://img.shields.io/github/stars/Mahenjeeb/bugblade-ai?style=social)](https://github.com/Mahenjeeb/bugblade-ai)
+[![GitHub forks](https://img.shields.io/github/forks/Mahenjeeb/bugblade-ai?style=social)](https://github.com/Mahenjeeb/bugblade-ai)
+[![GitHub issues](https://img.shields.io/github/issues/Mahenjeeb/bugblade-ai)](https://github.com/Mahenjeeb/bugblade-ai/issues)
 
 </div>
