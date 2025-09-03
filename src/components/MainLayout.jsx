@@ -4,11 +4,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const MainLayout = () => {
   return (
-    <div className="app">
+    <div className="min-h-screen flex flex-col">
       <NavBar />
-      <div className="main-container">
+      <div className="flex flex-col flex-1 h-[calc(100vh-3.5rem)] p-2 sm:p-3 md:p-4 max-w-full lg:max-w-[1400px] bg-slate-100 sticky">
         <LanguageSelector />
-        <main className="main-content">
+        <main className="flex-1 overflow-hidden bg-white rounded-xl shadow-md">
           <Outlet />
         </main>
       </div>

@@ -6,6 +6,7 @@ import {
   FaCopy,
   FaCode,
   FaStar,
+  FaTrash,
 } from "react-icons/fa";
 import apiConfig from "../apiEndpoints";
 
@@ -14,28 +15,21 @@ const CodeExecution = ({ codeToRun, onFixButtonClick }) => {
   // Add null check to prevent destructuring error
   if (!codeToRun || typeof codeToRun !== "object") {
     return (
-      <div className="execution-placeholder">
-        <div className="placeholder-icon">
-          <FaCode />
+      <div className="flex flex-col h-full bg-black">
+        <div className="p-3 sm:p-4 border-b border-slate-700 flex items-center justify-between bg-black">
+          <span className="text-base sm:text-lg font-semibold text-white">Output</span>
         </div>
-        <p>Select a language to start coding</p>
+        <div className="flex-1 bg-[#1e1e1e] flex items-center justify-center p-4">
+          <div className="text-center text-gray-400" style={{ fontFamily: "'Monaco', 'Menlo', 'Ubuntu Mono', monospace", fontSize: '14px', lineHeight: '1.5' }}>
+            <FaCode className="text-4xl mb-4 mx-auto" />
+            <p className="text-lg">Write a program and click "Run Code" to execute</p>
+          </div>
+        </div>
       </div>
     );
   }
 
   const { language, code } = codeToRun;
-
-  // Additional safety check
-  if (!language || !code) {
-    return (
-      <div className="execution-placeholder">
-        <div className="placeholder-icon">
-          <FaBug />
-        </div>
-        <p>Invalid code configuration</p>
-      </div>
-    );
-  }
 
   const executeIntialstate = {
     output: "",
@@ -119,53 +113,65 @@ const CodeExecution = ({ codeToRun, onFixButtonClick }) => {
   };
 
   return (
-    <div className="code-execution">
-      <div className="execution-header">
-        <h3>Output</h3>
-        <div className="execution-actions">
+    <div className="flex flex-col h-full">
+      <div className="p-1 sm:p-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+        <span className="text-base sm:text-lg font-semibold text-black">Output</span>
+        <div className="flex gap-2">
           <button
-            className="btn btn-danger run-btn"
+            className={`bg-none p-2 border-none rounded ${ !language || !code ? 'text-zinc-500' :'text-green-600'} cursor-pointer transition-all duration-200 ${ !language || !code ? '' :'hover:text-green-500'} `}
             onClick={handleCompilation}
-            disabled={executeCurrState.isLoading}
+            disabled={executeCurrState.isLoading || !language || !code}
+            title="Run"
           >
             <FaPlay />
-            {executeCurrState.isLoading ? "Running..." : "Run"}
           </button>
 
-          <button className="btn btn-primary run-btn">Clear</button>
-          {/* {executeCurrState.output.stderr && (
+           <button
+            className={`bg-none p-2 border-none rounded ${ !language || !code ? 'text-zinc-500' :'text-red-600'} cursor-pointer transition-all duration-200 ${ !language || !code ? '' :'hover:text-red-500'}`}
+            disabled={!language || !code}
+            title="Clear Console"
+          >
+            <FaTrash/>
+          </button>
+          {executeCurrState.output.stderr && (
             <button
-              className="btn btn-warning run-btn"
+              className="bg-none p-2 border-none rounded text-purple-600 cursor-pointer transition-all duration-200 hover:text-purple-500"
               onClick={onFixButtonClick}
               disabled={executeCurrState.isLoading}
+              title="AI Fix"
             >
               <FaStar />
-              {executeCurrState.isLoading ? "Fixing..." : "AI Fix"}
             </button>
-          )} */}
+          )}
         </div>
       </div>
 
-      <div className="execution-content">
-        {executeCurrState.output && (
-          <div className="success-output">
-            <div
-              className={
-                executeCurrState.output.stderr
-                  ? "output-content error"
-                  : "output-content success"
-              }
-            >
-              <pre>{executeCurrState.output.output || "No output"}</pre>
+      <div className="flex-1 overflow-hidden bg-[#1e1e1e]">
+        <div className="h-full overflow-y-auto">
+          {executeCurrState.isLoading && (
+            <div className="bg-[#1e1e1e] p-4">
+              <div className="animate-pulse">
+                <div className="h-4 bg-gray-700 rounded mb-2"></div>
+                <div className="h-4 bg-gray-700 rounded mb-2 w-3/4"></div>
+                <div className="h-4 bg-gray-700 rounded mb-2 w-1/2"></div>
+                <div className="h-4 bg-gray-700 rounded mb-2 w-5/6"></div>
+                <div className="h-4 bg-gray-700 rounded w-2/3"></div>
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {!executeCurrState.output && !executeCurrState.error && (
-          <div className="no-output">
-            <p>Click "Run Code" to execute your program</p>
-          </div>
-        )}
+          {executeCurrState.output && !executeCurrState.isLoading && (
+            <div className="bg-[#1e1e1e] text-white p-4" style={{ fontFamily: "'Monaco', 'Menlo', 'Ubuntu Mono', monospace", fontSize: '14px', lineHeight: '1.5' }}>
+              <pre className="whitespace-pre-wrap m-0">{executeCurrState.output.output || "No output"}</pre>
+            </div>
+          )}
+
+          {!executeCurrState.output && !executeCurrState.error && !executeCurrState.isLoading && (
+            <div className="bg-[#1e1e1e] text-gray-400 h-full flex items-center justify-center p-4" style={{ fontFamily: "'Monaco', 'Menlo', 'Ubuntu Mono', monospace", fontSize: '14px' }}>
+              <p>{!language || !code ? "Write a program to continue" : "Click \"Run Code\" to execute your program"}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

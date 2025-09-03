@@ -42,34 +42,34 @@ const LanguageSelector = () => {
   }, []);
 
   return (
-    <div className="relative inline-block mb-4" ref={dropdownRef}>
+    <div className="relative inline-block min-w-max w-[180px] sm:w-[220px] md:w-[260px] pb-2.5 z-[1000] mb-4" ref={dropdownRef}>
       {/* Trigger */}
       <div
-        className="flex items-center justify-between w-[180px] px-3 py-2 bg-white rounded shadow-md cursor-pointer hover:bg-gray-50"
+        className="flex items-center justify-between w-full px-4 py-3 bg-slate-100 border-2 border-slate-400 rounded-xl cursor-pointer transition-all duration-300 shadow-md hover:border-blue-400 hover:shadow-lg hover:-translate-y-0.5 user-select-none"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-3">
           {languageIcons[selectedLanguage]}
-          <span className="text-sm font-medium">{selectedLanguage}</span>
+          <span className="text-sm font-medium text-slate-900 flex-1">{selectedLanguage}</span>
         </span>
         <FaChevronDown
-          className={`ml-2 w-3 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`text-xs text-slate-500 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
         />
       </div>
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute mt-2 w-[180px] rounded-md shadow-md bg-white ring-1 ring-black ring-opacity-5 z-10">
+        <div className="absolute top-full left-0 right-0 bg-slate-100 rounded-xl mt-2 shadow-xl overflow-hidden z-[1001] max-h-80 overflow-y-auto">
           {editorConfig.map((lang) => (
             <div
               key={lang.name}
-              className={`flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-100 ${
-                selectedLanguage === lang.name ? "bg-gray-200 font-semibold" : ""
+              className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-all duration-200 border-b border-slate-200 last:border-b-0 hover:bg-gradient-to-r hover:from-blue-400 hover:to-blue-500 hover:text-white ${
+                selectedLanguage === lang.name ? "bg-blue-50 text-blue-500" : ""
               }`}
               onClick={() => handleSelect(lang.name)}
             >
               {languageIcons[lang.name]}
-              <span className="text-sm">{lang.name}</span>
+              <span className="text-sm font-medium">{lang.name}</span>
             </div>
           ))}
         </div>
