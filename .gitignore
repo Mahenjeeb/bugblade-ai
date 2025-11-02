@@ -1,25 +1,144 @@
+## Node
+node_modules/
+**/node_modules/
+
 # Logs
-logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
 *.log
+
+# Build outputs
+dist/
+build/
+client/dist/
+server/dist/
+
+# Vite cache / outputs
+.vite/
+
+# Environment variables (do NOT commit secrets)
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Coverage
+coverage/
+
+# Misc
+.cache/
+.parcel-cache/
+.pnp.*
+/.pnp
+.esbuild/
+
+# Firebase local emulators and debug
+.firebase/
+firebase-debug.log
+# =====================
+# Node / build artifacts
+# =====================
+
+# Ignore node modules everywhere in the repo
+**/node_modules/
+
+# Build / output folders
+/dist/
+/build/
+/out/
+**/dist/
+**/build/
+
+# Vite cache/build folders
+.vite/
+.vitepress/dist/
+
+# npm / pnpm logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# =====================
+# Environment / secrets
+# =====================
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Ignore local env files but keep committed examples
+.env
+.env.local
+.env.*.local
+client/.env
+server/.env
+
+# keep example env files in source control
+!*.env.example
+!client/.env.example
+!server/.env.example
+
+# =====================
+# Editors / OS
+# =====================
+
+.vscode/
+/.vscode/extensions.json
+.idea/
 .DS_Store
+Thumbs.db
+
+# Visual Studio temporary files
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
-*.env
+*.swp
+
+# =====================
+# Logs, caches, coverage
+# =====================
+
+*.log
+logs/
+.cache/
+.parcel-cache/
+.turbo/
+.eslintcache
+.nyc_output/
+coverage/
+coverage-final.json
+
+# =====================
+# Misc
+# =====================
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+ehthumbs.db
+Icon?
+
+# Docker
+docker-compose.override.yml
+

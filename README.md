@@ -20,33 +20,59 @@ BugBlade AI is a modern web application that leverages AI to automatically revie
 - 📱 **Responsive Design** - Works seamlessly on desktop and mobile
 
 ## 🚀 Quick Start
-
 ### Prerequisites
 
 - Node.js (v16 or higher)
-- npm or yarn
+- npm (v7+ recommended for workspaces) or yarn
 
-### Installation
+### Installation (monorepo: client + server)
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Mahenjeeb/bugblade-ai.git
-   cd bugblade-ai
-   ```
+1. Clone the repository:
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+```powershell
+git clone https://github.com/Mahenjeeb/bugblade-ai.git
+cd bugblade-ai
+```
 
+2. Install dependencies (at repo root). This uses npm workspaces which will install both `client` and `server` deps:
 
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
+```powershell
+npm install
+```
 
-4. **Open your browser**
-   Navigate to `http://localhost:3000` to start using BugBlade AI!
+3. Create env files from the examples:
+
+```powershell
+copy client\.env.example client\.env
+copy server\.env.example server\.env
+# Then edit client\.env and server\.env and fill in real values (do NOT commit secrets)
+```
+
+4. Start client and server in development (two options):
+
+- Start client only:
+
+```powershell
+npm run dev
+```
+
+- Start server only:
+
+```powershell
+npm run server:dev
+```
+
+- Start both together (root `npm start` uses `concurrently`):
+
+```powershell
+npm start
+```
+
+5. Open your browser:
+
+Client (Vite): http://localhost:5173 (or http://localhost:3000 if your setup uses that port)
+
+API (server): http://localhost:5000 (default)
 
 ## 🛠️ Tech Stack
 
@@ -151,8 +177,59 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Vite](https://vitejs.dev/) for the fast build tool
 
 ## 📞 Support
-
+-
 - **Issues**: [GitHub Issues](https://github.com/Mahenjeeb/bugblade-ai/issues)
+ 
+## 🔐 Git, .gitignore & Environment files
+
+This repository includes a recommended `.gitignore` (added at the project root) that excludes generated files and local secrets so you don't accidentally commit sensitive data.
+
+Key things the `.gitignore` covers:
+
+- `node_modules/` (root, `client/` and `server/`)
+- Build output folders: `dist/`, `client/dist/`, `server/dist/`
+- Vite cache (`.vite/`), editor folders (`.vscode/`, `.idea/`), OS files (`.DS_Store`, `Thumbs.db`)
+- Local environment files: `.env`, `.env.local`, and other `.env.*` variants
+- Firebase local emulator files (`.firebase/`) and debug logs
+
+Environment file guidance
+
+- Do NOT commit real secrets. Instead add a committed `*.env.example` with placeholder values and create the real `.env` locally from it.
+
+Suggested example contents (placeholders) — create these files in the matching folders and commit the `*.env.example` files only:
+
+client/.env.example
+```
+VITE_apiKey=your_api_key_here
+VITE_projectId=your_project_id_here
+VITE_appId=your_app_id_here
+VITE_messagingSenderId=your_messaging_sender_id_here
+```
+
+server/.env.example
+```
+OPENAI_API_KEY=your_openai_api_key_here
+PORT=5000
+# add other server environment variables here
+```
+
+How to create your local env from the examples (PowerShell):
+
+```powershell
+copy client\.env.example client\.env
+copy server\.env.example server\.env
+# then edit client\.env and server\.env and fill in real values (do NOT commit these)
+```
+
+Quick check which files are ignored (helpful to confirm `.gitignore`):
+
+```powershell
+git status --ignored
+# or check a specific file
+git check-ignore -v client\.env
+```
+
+If you'd like, I can add example `client/.env.example` and `server/.env.example` files to the repo with the placeholder values. Just tell me to add them and I'll commit them for you.
 - **Discussions**: [GitHub Discussions](https://github.com/Mahenjeeb/bugblade-ai/discussions)
 - **Email**: mahenjeeb.biswal@gmail.com
 
